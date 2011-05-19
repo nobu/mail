@@ -13,7 +13,7 @@ X-MDAV-Processed: mail.ga-example.com, Tue, 12 Oct 2010 16:21:07 -0400
 X-Spam-Processed: mail.ga-example.com, Tue, 12 Oct 2010 16:21:06 -0400
 X-Spam-Checker-Version: SpamAssassin 3.2.5 (2008-06-10) on
 	MAIL02.VD-example.com
-X-Spam-Level: 
+X-Spam-Level:
 X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
 	FORGED_YAHOO_RCVD,INVALID_DATE,NO_RELAYS,SUBJECT_NEEDS_ENCODING
 	shortcircuit=no autolearn=no version=3.2.5

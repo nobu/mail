@@ -1,7 +1,7 @@
 module Mail
   # The TestMailer is a bare bones mailer that does nothing.  It is useful
   # when you are testing.
-  # 
+  #
   # It also provides a template of the minimum methods you require to implement
   # if you want to make a custom mailer for Mail
   class TestMailer
@@ -12,11 +12,11 @@ module Mail
     end
 
     # Allows you to over write the default deliveries store from an array to some
-    # other object.  If you just want to clear the store, 
+    # other object.  If you just want to clear the store,
     # call TestMailer.deliveries.clear.
-    # 
+    #
     # If you place another object here, please make sure it responds to:
-    # 
+    #
     # * << (message)
     # * clear
     # * length
@@ -29,12 +29,12 @@ module Mail
     def initialize(values)
       @settings = {}
     end
-    
+
     attr_accessor :settings
 
     def deliver!(mail)
       Mail::TestMailer.deliveries << mail
     end
-    
+
   end
 end

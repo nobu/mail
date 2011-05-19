@@ -2,14 +2,14 @@
 require 'spec_helper'
 
 describe "Mail::CommonAddress" do
-  
+
   describe "address handling" do
-  
+
     it "should give the addresses it is going to" do
       field = Mail::ToField.new("To: test1@lindsaar.net")
       field.addresses.first.should == "test1@lindsaar.net"
     end
-  
+
     it "should split up the address list into individual addresses" do
       field = Mail::ToField.new("To: test1@lindsaar.net, test2@lindsaar.net")
       field.addresses.should == ["test1@lindsaar.net", "test2@lindsaar.net"]
@@ -85,19 +85,19 @@ describe "Mail::CommonAddress" do
     end
 
   end
-  
+
   describe "encoding and decoding fields" do
-    
+
     it "should allow us to encode an address field" do
       field = Mail::ToField.new("test1@lindsaar.net, My Group: test2@lindsaar.net, me@lindsaar.net;")
       field.encoded.should == "To: test1@lindsaar.net, \r\n\sMy Group: test2@lindsaar.net, \r\n\sme@lindsaar.net;\r\n"
     end
-    
+
     it "should allow us to encode a simple address field" do
       field = Mail::ToField.new("test1@lindsaar.net")
       field.encoded.should == "To: test1@lindsaar.net\r\n"
     end
-    
+
     it "should allow us to encode an address field" do
       field = Mail::CcField.new("test1@lindsaar.net, My Group: test2@lindsaar.net, me@lindsaar.net;")
       field.encoded.should == "Cc: test1@lindsaar.net, \r\n\sMy Group: test2@lindsaar.net, \r\n\sme@lindsaar.net;\r\n"
@@ -107,19 +107,19 @@ describe "Mail::CommonAddress" do
       field = Mail::ToField.new("test1@lindsaar.net, My Group: test2@lindsaar.net, me@lindsaar.net;")
       field.decoded.should == "test1@lindsaar.net, My Group: test2@lindsaar.net, me@lindsaar.net;"
     end
-    
+
     it "should allow us to decode a non ascii address field" do
       field = Mail::ToField.new("=?UTF-8?B?44G/44GR44KL?= <raasdnil@text.lindsaar.net>")
       field.decoded.should == '"みける" <raasdnil@text.lindsaar.net>'
     end
-    
+
     it "should allow us to decode a non ascii address field" do
       field = Mail::ToField.new("=?UTF-8?B?44G/44GR44KL?= <raasdnil@text.lindsaar.net>, =?UTF-8?B?44G/44GR44KL?= <mikel@text.lindsaar.net>")
       field.decoded.should == '"みける" <raasdnil@text.lindsaar.net>, "みける" <mikel@text.lindsaar.net>'
     end
 
   end
-  
+
   it "should yield each address object in turn" do
     field = Mail::ToField.new("test1@lindsaar.net, test2@lindsaar.net, me@lindsaar.net")
     addresses = []

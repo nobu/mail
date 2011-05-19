@@ -3,7 +3,7 @@ require 'mail/fields/common/address_container'
 
 module Mail
   module CommonAddress # :nodoc:
-      
+
     def parse(val = value)
       unless val.blank?
         @tree = AddressList.new(encode_if_needed(val))
@@ -11,15 +11,15 @@ module Mail
         nil
       end
     end
-    
+
     def charset
       @charset
     end
-    
+
     def encode_if_needed(val)
       Encodings.address_encode(val, charset)
     end
-    
+
     # Allows you to iterate through each address object in the syntax tree
     def each
       tree.addresses.each do |address|
@@ -38,19 +38,19 @@ module Mail
       list = tree.addresses.map { |a| a.format }
       Mail::AddressContainer.new(self, list)
     end
-  
+
     # Returns the display name of all the addresses in the address list
     def display_names
       list = tree.addresses.map { |a| a.display_name }
       Mail::AddressContainer.new(self, list)
     end
-  
+
     # Returns the actual address objects in the address list
     def addrs
       list = tree.addresses
       Mail::AddressContainer.new(self, list)
     end
-  
+
     # Returns a hash of group name => address strings for the address list
     def groups
       @groups = Hash.new
@@ -59,7 +59,7 @@ module Mail
       end
       @groups
     end
-  
+
     # Returns the addresses that are part of groups
     def group_addresses
       groups.map { |k,v| v.map { |a| a.format } }.flatten
@@ -69,7 +69,7 @@ module Mail
     def group_names # :nodoc:
       tree.group_names
     end
-  
+
     def default
       addresses
     end
@@ -84,9 +84,9 @@ module Mail
         parse((formatted + [val]).join(", "))
       end
     end
-  
+
     private
-  
+
     def do_encode(field_name)
       return '' if value.blank?
       address_array = tree.addresses.reject { |a| group_addresses.include?(a.encoded) }.compact.map { |a| a.encoded }
@@ -111,7 +111,7 @@ module Mail
     def tree # :nodoc:
       @tree ||= AddressList.new(value)
     end
-  
+
     def get_group_addresses(group_list)
       if group_list.respond_to?(:addresses)
         group_list.addresses.map do |address_tree|

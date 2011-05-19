@@ -2,10 +2,10 @@
 require 'spec_helper'
 
 describe Mail::ToField do
-  # 
+  #
   #    The "To:" field contains the address(es) of the primary recipient(s)
   #    of the message.
-  
+
   describe "initialization" do
 
     it "should initialize" do
@@ -13,7 +13,7 @@ describe Mail::ToField do
     end
 
     it "should mix in the CommonAddress module" do
-      Mail::ToField.included_modules.should include(Mail::CommonAddress) 
+      Mail::ToField.included_modules.should include(Mail::CommonAddress)
     end
 
     it "should accept a string with the field name" do
@@ -29,7 +29,7 @@ describe Mail::ToField do
     end
 
   end
-  
+
   # Actual testing of CommonAddress methods oTours in the address field spec file
 
   describe "instance methods" do
@@ -50,43 +50,43 @@ describe Mail::ToField do
       t.addresses[1].should == 'mikel@me.com'
       t.addresses[2].should == 'bob@you.com'
     end
-    
+
     it "should return the formatted line on to_s" do
       t = Mail::ToField.new('sam@me.com, my_group: mikel@me.com, bob@you.com;')
       t.value.should == 'sam@me.com, my_group: mikel@me.com, bob@you.com;'
     end
-    
+
     it "should return the encoded line" do
       t = Mail::ToField.new('sam@me.com, my_group: mikel@me.com, bob@you.com;')
       t.encoded.should == "To: sam@me.com, \r\n\smy_group: mikel@me.com, \r\n\sbob@you.com;\r\n"
     end
-    
+
     it "should return the decoded line" do
       t = Mail::ToField.new('sam@me.com, my_group: mikel@me.com, bob@you.com;')
       t.decoded.should == "sam@me.com, my_group: mikel@me.com, bob@you.com;"
     end
-    
+
     it "should get multiple address out from a group list" do
       t = Mail::ToField.new('sam@me.com, my_group: mikel@me.com, bob@you.com;')
       t.addresses.should == ["sam@me.com", "mikel@me.com", "bob@you.com"]
     end
-    
+
     it "should handle commas in the address" do
       t = Mail::ToField.new('"Long, stupid email address" <mikel@test.lindsaar.net>')
       t.addresses.should == ["mikel@test.lindsaar.net"]
     end
-    
+
     it "should handle commas in the address for multiple fields" do
       t = Mail::ToField.new('"Long, stupid email address" <mikel@test.lindsaar.net>, "Another, really, really, long, stupid email address" <bob@test.lindsaar.net>')
       t.addresses.should == ["mikel@test.lindsaar.net", "bob@test.lindsaar.net"]
     end
-    
+
   end
-  
+
   it "should not crash if it can't understand a name" do
     t = Mail.new('To: <"Undisclosed-Recipient:"@msr19.hinet.net;>')
     doing { t.encoded }.should_not raise_error
     t.encoded.should =~ /To\:\s<"Undisclosed\-Recipient\:"@msr19\.hinet\.net;>\r\n/
   end
-  
+
 end

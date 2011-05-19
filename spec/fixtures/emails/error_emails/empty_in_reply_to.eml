@@ -2,7 +2,7 @@ Return-path: <ak@g.com>
 Envelope-to: abuser@r.ru
 Delivery-date: Sat, 19 Sep 2009 21:41:40 +0400
 Received: from mail-fx0-f215.google.com ([209.85.220.215]:39047)
-	by mail.rg.com with esmtp 
+	by mail.rg.com with esmtp
 	id 1Mp3wA-0007kA-Ic
 	for <abuser@r.ru>; Sat, 19 Sep 2009 21:41:30 +0400
 Received: by fxm11 with SMTP id 11so1412272fxm.15
@@ -33,7 +33,7 @@ Received: from articondell (ppp85-140-104-88.pppoe.mtu-net.ru [85.140.104.88])
         Sat, 19 Sep 2009 08:49:40 -0700 (PDT)
 From: "Andrey Kuznetsov" <ak@g.com>
 To: <abuser@r.ru>
-Subject: illegal copy of our patient education software 
+Subject: illegal copy of our patient education software
 Date: Sat, 19 Sep 2009 19:49:36 +0400
 Message-ID: <F194F88AF3E341A6B2B135CC17912811@articondell>
 MIME-Version: 1.0
@@ -44,8 +44,8 @@ X-MSMail-Priority: Normal
 X-Mailer: Microsoft Outlook, Build 10.0.4024
 Importance: Normal
 X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2900.5579
-In-Reply-To: 
-Recivied-SPF: (invalid) 
+In-Reply-To:
+Recivied-SPF: (invalid)
 RSpam-Score: 40
 List-Id:  abuser@rg.com Mailing List
 Reply-To: ak@g.com

@@ -1,10 +1,10 @@
 # encoding: utf-8
 require 'spec_helper'
-# 
+#
 # resent-sender   =       "Resent-Sender:" mailbox CRLF
 
 describe Mail::ResentSenderField do
-  
+
   describe "initialization" do
 
     it "should initialize" do
@@ -12,7 +12,7 @@ describe Mail::ResentSenderField do
     end
 
     it "should mix in the CommonAddress module" do
-      Mail::ResentSenderField.included_modules.should include(Mail::CommonAddress) 
+      Mail::ResentSenderField.included_modules.should include(Mail::CommonAddress)
     end
 
     it "should accept a string with the field name" do
@@ -28,7 +28,7 @@ describe Mail::ResentSenderField do
     end
 
   end
-  
+
   # Actual testing of CommonAddress methods oResentSenderurs in the address field spec file
 
   describe "instance methods" do
@@ -41,18 +41,18 @@ describe Mail::ResentSenderField do
       t = Mail::ResentSenderField.new('Mikel Lindsaar <mikel@test.lindsaar.net>')
       t.address.to_s.should == 'Mikel Lindsaar <mikel@test.lindsaar.net>'
     end
-    
+
     it "should return the formatted line on to_s" do
       t = Mail::ResentSenderField.new('Mikel Lindsaar <mikel@test.lindsaar.net>')
       t.value.should == 'Mikel Lindsaar <mikel@test.lindsaar.net>'
     end
-    
+
     it "should return the encoded line" do
       t = Mail::ResentSenderField.new('Mikel Lindsaar <mikel@test.lindsaar.net>')
       t.encoded.should == "Resent-Sender: Mikel Lindsaar <mikel@test.lindsaar.net>\r\n"
     end
-    
+
   end
-  
-  
+
+
 end

@@ -23,10 +23,10 @@ module Mail
     rule primary
       addr_spec ctime_date
     end
-    
+
     rule ctime_date
       day_name " "+ month_name " "+ day " " time_of_day " " year
     end
-    
+
   end
 end

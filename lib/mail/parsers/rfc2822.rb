@@ -2797,7 +2797,7 @@ module Mail
     end
 
     module Address0
-  
+
       def dig_comments(comments, elements)
         elements.each { |elem|
           if elem.respond_to?(:comment)
@@ -2806,7 +2806,7 @@ module Mail
           dig_comments(comments, elem.elements) if elem.elements
          }
       end
-  
+
       def comments
         comments = []
         dig_comments(comments, elements)

@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe Mail::BccField do
-  
+
   #    The "Bcc:" field (where the "Bcc" means "Blind Carbon Copy") contains
   #    addresses of recipients of the message whose addresses are not to be
   #    revealed to other recipients of the message.  There are three ways in
@@ -22,7 +22,7 @@ describe Mail::BccField do
   #    copies were sent to someone.  Which method to use with "Bcc:" fields
   #    is implementation dependent, but refer to the "Security
   #    Considerations" section of this document for a discussion of each.
-  
+
   describe "initialization" do
 
     it "should initialize" do
@@ -30,7 +30,7 @@ describe Mail::BccField do
     end
 
     it "should mix in the CommonAddress module" do
-      Mail::BccField.included_modules.should include(Mail::CommonAddress) 
+      Mail::BccField.included_modules.should include(Mail::CommonAddress)
     end
 
     it "should accept a string with the field name" do
@@ -46,7 +46,7 @@ describe Mail::BccField do
     end
 
   end
-  
+
   # Actual testing of CommonAddress methods occurs in the address field spec file
 
   describe "instance methods" do
@@ -67,23 +67,23 @@ describe Mail::BccField do
       t.addresses[1].should == 'mikel@me.com'
       t.addresses[2].should == 'bob@you.com'
     end
-    
+
     it "should return the formatted line on to_s" do
       t = Mail::BccField.new('sam@me.com, my_group: mikel@me.com, bob@you.com;')
       t.value.should == 'sam@me.com, my_group: mikel@me.com, bob@you.com;'
     end
-    
+
     it "should return nothing on encoded as Bcc should not be in the mail" do
       t = Mail::BccField.new('sam@me.com, my_group: mikel@me.com, bob@you.com;')
       t.encoded.should == ""
     end
-    
+
     it "should return the decoded line" do
       t = Mail::BccField.new('sam@me.com, my_group: mikel@me.com, bob@you.com;')
       t.decoded.should == "sam@me.com, my_group: mikel@me.com, bob@you.com;"
     end
-    
+
   end
-  
-  
+
+
 end

@@ -8,7 +8,7 @@ describe 'AddressContainer' do
     m.to << 'bob@test.lindsaar.net'
     m.to.should == ['mikel@test.lindsaar.net', 'bob@test.lindsaar.net']
   end
-  
+
   it "should handle complex addresses correctly" do
     m = Mail.new("From: mikel@test.lindsaar.net")
     m.from.should == ['mikel@test.lindsaar.net']

@@ -6,6 +6,6 @@ module Mail
     rule primary
       ( day_of_week ",")? date FWS time CFWS?
     end
-    
+
   end
 end

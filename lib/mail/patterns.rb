@@ -5,17 +5,17 @@ module Mail
     text        = %Q|\x1-\x8\xB\xC\xE-\x7f|
     field_name  = %Q|\x21-\x39\x3b-\x7e|
     qp_safe     = %Q|\x20-\x3c\x3e-\x7e|
-    
+
     aspecial     = %Q|()<>[]:;@\\,."| # RFC5322
     tspecial     = %Q|()<>@,;:\\"/[]?=| # RFC2045
     lwsp         = %Q| \t\r\n|
     sp           = %Q| |
     control      = %Q|\x00-\x1f\x7f-\xff|
-    
+
     if control.respond_to?(:force_encoding)
       control = control.force_encoding(Encoding::BINARY)
     end
-    
+
     CRLF          = /\r\n/
     WSP           = /[#{white_space}]/
     FWS           = /#{CRLF}#{WSP}*/

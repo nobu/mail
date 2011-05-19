@@ -1,6 +1,6 @@
 # encoding: utf-8
 require 'spec_helper'
-# 
+#
 #    The "References:" field will contain the contents of the parent's
 #    "References:" field (if any) followed by the contents of the parent's
 #    "Message-ID:" field (if any).  If the parent message does not contain
@@ -24,7 +24,7 @@ describe Mail::ReferencesField do
     t.value.should == '<1234@test.lindsaar.net>'
     t.message_id.should == '1234@test.lindsaar.net'
   end
-  
+
   it "should accept a string without the field name" do
     t = Mail::ReferencesField.new('<1234@test.lindsaar.net>')
     t.name.should == 'References'

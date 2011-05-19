@@ -5,7 +5,7 @@ Received: from mail-xxx.google.com (mail-xxx.google.com [0.0.0.0])
 Received: by qyk6 with SMTP id 6so3112qyk.3
         for <tester@test.com>; Wed, 02 Dec 2009 01:39:53 -0800 (PST)
 MIME-Version: 1.0
-Received: by 0.0.0.0 with SMTP id xxx.000.0000000000000; Wed, 
+Received: by 0.0.0.0 with SMTP id xxx.000.0000000000000; Wed,
 	02 Dec 2009 01:39:53 -0800 (PST)
 In-Reply-To: <8fc5086d0912020131y377ba0ccpf8f14783cfc3014a@test.com>
 References: <8fc5086d0912020131y377ba0ccpf8f14783cfc3014a@test.com>

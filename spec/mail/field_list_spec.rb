@@ -7,7 +7,7 @@ describe Mail::FieldList do
     fl << Mail::Field.new("From: mikel@me.com")
     fl.length.should == 2
   end
-  
+
   it "should be able to add new fields in the right order" do
     fl = Mail::FieldList.new
     fl << Mail::Field.new("To: mikel@me.com")
@@ -19,7 +19,7 @@ describe Mail::FieldList do
     fl[2].field.class.should == Mail::FromField
     fl[3].field.class.should == Mail::ToField
   end
-  
+
   it "should add new Received items after the existing ones" do
     fl = Mail::FieldList.new
     fl << Mail::Field.new("To: mikel@me.com")
@@ -29,5 +29,5 @@ describe Mail::FieldList do
     fl << Mail::Field.new("Received: from 123.xxxx.xxx by xxx.xxxx.xxx with ESMTP id 6AAEE3B4D23 for <xxx@xxxx.xxx>; Sun, 8 May 2005 12:30:23 -0500")
     fl[2].field.value.should == 'from 123.xxxx.xxx by xxx.xxxx.xxx with ESMTP id 6AAEE3B4D23 for <xxx@xxxx.xxx>; Sun, 8 May 2005 12:30:23 -0500'
   end
-  
+
 end

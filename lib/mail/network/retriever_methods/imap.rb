@@ -34,7 +34,7 @@ module Mail
   #
   class IMAP < Retriever
     require 'net/imap'
-    
+
     def initialize(values)
       self.settings = { :address              => "localhost",
                         :port                 => 143,

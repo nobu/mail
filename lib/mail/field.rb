@@ -5,11 +5,11 @@ module Mail
   # Provides a single class to call to create a new structured or unstructured
   # field.  Works out per RFC what field of field it is being given and returns
   # the correct field of class back on new.
-  # 
+  #
   # ===Per RFC 2822
-  #  
+  #
   #  2.2. Header Fields
-  #  
+  #
   #     Header fields are lines composed of a field name, followed by a colon
   #     (":"), followed by a field body, and terminated by CRLF.  A field
   #     name MUST be composed of printable US-ASCII characters (i.e.,
@@ -19,12 +19,12 @@ module Mail
   #     used in header "folding" and  "unfolding" as described in section
   #     2.2.3.  All field bodies MUST conform to the syntax described in
   #     sections 3 and 4 of this standard.
-  #  
+  #
   class Field
-    
+
     include Patterns
     include Comparable
-    
+
     STRUCTURED_FIELDS = %w[ bcc cc content-description content-disposition
                             content-id content-location content-transfer-encoding
                             content-type date from in-reply-to keywords message-id
@@ -34,7 +34,7 @@ module Mail
                             return-path sender to ]
 
     KNOWN_FIELDS = STRUCTURED_FIELDS + ['comments', 'subject']
-    
+
     # Generic Field Exception
     class FieldError < StandardError
     end
@@ -47,25 +47,25 @@ module Mail
     # Raised when attempting to set a structured field's contents to an invalid syntax
     class SyntaxError < FieldError #:nodoc:
     end
-    
+
     # Accepts a string:
-    # 
+    #
     #  Field.new("field-name: field data")
-    # 
+    #
     # Or name, value pair:
-    # 
+    #
     #  Field.new("field-name", "value")
-    # 
+    #
     # Or a name by itself:
-    # 
+    #
     #  Field.new("field-name")
-    # 
+    #
     # Note, does not want a terminating carriage return.  Returns
     # self appropriately parsed.  If value is not a string, then
     # it will be passed through as is, for example, content-type
-    # field can accept an array with the type and a hash of 
+    # field can accept an array with the type and a hash of
     # parameters:
-    # 
+    #
     #  Field.new('content-type', ['text', 'plain', {:charset => 'UTF-8'}])
     def initialize(name, value = nil, charset = 'utf-8')
       case
@@ -84,45 +84,45 @@ module Mail
     def field=(value)
       @field = value
     end
-    
+
     def field
       @field
     end
-    
+
     def name
       field.name
     end
-    
+
     def value
       field.value
     end
-    
+
     def value=(val)
       create_field(name, val, charset)
     end
-    
+
     def to_s
       field.to_s
     end
-    
+
     def update(name, value)
       create_field(name, value, charset)
     end
-    
+
     def same( other )
       match_to_s(other.name, field.name)
     end
-    
+
     def <=>( other )
       self_order = FIELD_ORDER.rindex(self.name.to_s.downcase) || 100
       other_order = FIELD_ORDER.rindex(other.name.to_s.downcase) || 100
       self_order <=> other_order
     end
-    
+
     def method_missing(name, *args, &block)
       field.send(name, *args, &block)
     end
-    
+
     FIELD_ORDER = %w[ return-path received
                       resent-date resent-from resent-sender resent-to
                       resent-cc resent-bcc resent-message-id
@@ -131,16 +131,16 @@ module Mail
                       subject comments keywords
                       mime-version content-type content-transfer-encoding
                       content-location content-disposition content-description ]
-    
+
     private
-    
+
     def split(raw_field)
       match_data = raw_field.mb_chars.match(/^(#{FIELD_NAME})\s*:\s*(#{FIELD_BODY})?$/)
       [match_data[1].to_s.mb_chars.strip, match_data[2].to_s.mb_chars.strip]
     rescue
       STDERR.puts "WARNING: Could not parse (and so ignorning) '#{raw_field}'"
     end
-    
+
     def create_field(name, value, charset)
       begin
         self.field = new_field(name, value, charset)
@@ -152,8 +152,8 @@ module Mail
     end
 
     def new_field(name, value, charset)
-      # Could do this with constantize and make it "as DRY as", but a simple case 
-      # statement is, well, simpler... 
+      # Could do this with constantize and make it "as DRY as", but a simple case
+      # statement is, well, simpler...
       case name.to_s.downcase
       when /^to$/i
         ToField.new(value, charset)
@@ -185,7 +185,7 @@ module Mail
         ResentDateField.new(value, charset)
       when /^resent-from$/i
         ResentFromField.new(value, charset)
-      when /^resent-sender$/i 
+      when /^resent-sender$/i
         ResentSenderField.new(value, charset)
       when /^resent-to$/i
         ResentToField.new(value, charset)
@@ -213,12 +213,12 @@ module Mail
         ContentIdField.new(value, charset)
       when /^content-location$/i
         ContentLocationField.new(value, charset)
-      else 
+      else
         OptionalField.new(name, value, charset)
       end
-      
+
     end
 
   end
-  
+
 end

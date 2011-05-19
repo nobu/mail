@@ -12,7 +12,7 @@ Authentication-Results: mx.google.com; spf=pass (google.com: best guess record f
 Received: by rubyforge.org (Postfix, from userid 502)
 	id 8FB1518581AC; Mon, 22 Sep 2008 15:06:28 -0400 (EDT)
 To: noreply@rubyforge.org
-From: Sandy M. <noreply@rubyforge.org> 
+From: Sandy M. <noreply@rubyforge.org>
 Subject: [skynet-help][60666] How are intermediate files handled in SkyNet?
 Content-type: text/plain; charset=UTF-8
 Message-Id: <20080922190628.8FB1518581AC@rubyforge.org>

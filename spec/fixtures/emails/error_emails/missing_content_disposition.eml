@@ -11,10 +11,10 @@ Return-Path: redacted@example.com
 Content-Location: somefile.jpg
 Content-Transfer-Encoding: base64
 Content-Type: image/jpg
-Content-Disposition: 
+Content-Disposition:
 Date: Tue, 22 Jan 2002 14:35:28 UT
-X-Mailer: 
-MIME-Version: 
+X-Mailer:
+MIME-Version:
 
 
 ICAKIApUaGFuayB5b3UgZm9yIHVzaW5nIG91ciBhdXRvbWF0ZWQgc2VsZiBzZXJ2aWNlIHBhc3N3

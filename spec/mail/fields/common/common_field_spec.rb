@@ -4,7 +4,7 @@ require 'spec_helper'
 describe Mail::CommonField do
 
   describe "multi-charset support" do
-    
+
     before(:each) do
       @original = $KCODE if RUBY_VERSION < '1.9'
     end
@@ -12,13 +12,13 @@ describe Mail::CommonField do
     after(:each) do
       $KCODE = @original if RUBY_VERSION < '1.9'
     end
-    
+
     it "should leave ascii alone" do
       field = Mail::SubjectField.new("This is a test")
       field.encoded.should == "Subject: This is a test\r\n"
       field.decoded.should == "This is a test"
     end
-    
+
     it "should encode a utf-8 string as utf-8 quoted printable" do
       value = "かきくけこ"
       if RUBY_VERSION < '1.9'
@@ -48,7 +48,7 @@ describe Mail::CommonField do
       field.decoded.should == value
       field.value.should == value
     end
-  
+
     it "should handle charsets in assigned addresses" do
       value = '"かきくけこ" <mikel@test.lindsaar.net>'
       if RUBY_VERSION < '1.9'
@@ -63,7 +63,7 @@ describe Mail::CommonField do
       field.decoded.should == value
       field.value.should == "=?UTF-8?B?44GL44GN44GP44GR44GT?= <mikel@test.lindsaar.net>"
     end
-    
+
   end
 
 end

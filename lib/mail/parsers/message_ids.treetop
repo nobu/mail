@@ -10,6 +10,6 @@ module Mail
         end
       }
     end
-    
+
   end
 end

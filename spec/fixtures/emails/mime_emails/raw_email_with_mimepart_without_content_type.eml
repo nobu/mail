@@ -54,7 +54,7 @@ Arrival-Date: Thu, 19 Oct 2006 01:23:47 -0400 (EDT)
 Final-Recipient: RFC822; larose.julie@courrier.uqam.ca
 Action: delayed
 Status: 4.5.0
-Diagnostic-Code: SMTP; 
+Diagnostic-Code: SMTP;
 Last-Attempt-Date: Fri, 20 Oct 2006 04:28:33 -0400 (EDT)
 Will-Retry-Until: Tue, 24 Oct 2006 01:23:47 -0400 (EDT)
 

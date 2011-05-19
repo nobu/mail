@@ -1,6 +1,6 @@
 # encoding: utf-8
 require 'spec_helper'
-# 
+#
 #    The "In-Reply-To:" field will contain the contents of the "Message-
 #    ID:" field of the message to which this one is a reply (the "parent
 #    message").  If there is more than one parent message, then the "In-
@@ -29,12 +29,12 @@ describe Mail::InReplyToField do
       t.value.should == '<1234@test.lindsaar.net>'
       t.message_id.should == '1234@test.lindsaar.net'
     end
-    
+
     it "should provide encoded" do
       t = Mail::InReplyToField.new('<1234@test.lindsaar.net>')
       t.encoded.should == "In-Reply-To: <1234@test.lindsaar.net>\r\n"
     end
-    
+
     it "should handle many encoded message IDs" do
       t = Mail::InReplyToField.new('<1234@test.lindsaar.net> <4567@test.lindsaar.net>')
       t.encoded.should == "In-Reply-To: <1234@test.lindsaar.net> <4567@test.lindsaar.net>\r\n"
@@ -44,18 +44,18 @@ describe Mail::InReplyToField do
       t = Mail::InReplyToField.new('<1234@test.lindsaar.net>')
       t.decoded.should == "<1234@test.lindsaar.net>"
     end
-    
+
     it "should handle many decoded message IDs" do
       t = Mail::InReplyToField.new('<1234@test.lindsaar.net> <4567@test.lindsaar.net>')
       t.decoded.should == '<1234@test.lindsaar.net> <4567@test.lindsaar.net>'
     end
-    
+
     it "should handle an empty value" do
       t = Mail::InReplyToField.new('')
       t.name.should == 'In-Reply-To'
       t.decoded.should == nil
     end
-    
+
   end
 
   describe "handlign multiple message ids" do

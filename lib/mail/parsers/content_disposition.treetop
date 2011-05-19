@@ -3,7 +3,7 @@ module Mail
 
     include RFC2822
     include RFC2045
-    
+
     rule content_disposition
       disposition_type param_hashes:(CFWS ";" parameter CFWS)* {
         def parameters
@@ -13,15 +13,15 @@ module Mail
         end
       }
     end
-    
+
     rule disposition_type
       [iI] [nN] [lL] [iI] [nN] [eE] / [aA] [tT] [tT] [aA] [cC] [hH] [mM] [eE] [nN] [tT] / extension_token / ''
     end
-    
+
     rule extension_token
       ietf_token / custom_x_token
     end
-    
+
     rule parameter
       CFWS? attr:attribute "=" val:value CFWS? {
         def param_hash
@@ -41,6 +41,6 @@ module Mail
         end
       } / (token / [\x3d])+
     end
-    
+
   end
 end

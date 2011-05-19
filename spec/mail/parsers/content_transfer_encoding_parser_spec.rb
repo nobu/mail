@@ -7,7 +7,7 @@ Treetop.load(File.join(MAIL_ROOT, 'lib/mail/parsers/rfc2822'))
 Treetop.load(File.join(MAIL_ROOT, 'lib/mail/parsers/content_transfer_encoding'))
 
 describe "ContentTransferEncodingParser" do
-  
+
   it "should work" do
     text = "quoted-printable"
     a = Mail::ContentTransferEncodingParser.new
@@ -45,7 +45,7 @@ describe "ContentTransferEncodingParser" do
       a.parse(text).encoding.text_value.should == 'quoted-printable'
     end
   end
-  
+
   describe "x-token values" do
     it "should work" do
       text = 'x-my-token'
@@ -54,7 +54,7 @@ describe "ContentTransferEncodingParser" do
       a.parse(text).encoding.text_value.should == 'x-my-token'
     end
   end
-  
+
   describe "wild content-transfer-encoding" do
     it "should convert 8bits to 8bit" do
       text = '8bits'

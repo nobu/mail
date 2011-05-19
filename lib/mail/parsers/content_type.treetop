@@ -3,7 +3,7 @@ module Mail
 
     include RFC2822
     include RFC2045
-    
+
     rule content_type
       main_type "/" sub_type param_hashes:(CFWS ";"? parameter CFWS)* {
         def parameters
@@ -35,7 +35,7 @@ module Mail
     rule composite_type
       [mM] [eE] [sS] [sS] [aA] [gG] [eE] / [mM] [uU] [lL] [tT] [iI] [pP] [aA] [rR] [tT] / extension_token
     end
-  
+
     rule extension_token
       ietf_token / custom_x_token
     end
@@ -43,7 +43,7 @@ module Mail
     rule sub_type
       extension_token / iana_token
     end
-  
+
     rule parameter
       CFWS? attr:attribute "=" val:value CFWS? {
         def param_hash

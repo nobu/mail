@@ -1,9 +1,9 @@
 # encoding: utf-8
 module Mail
   class EnvelopeFromElement
-    
+
     include Mail::Utilities
-    
+
     def initialize( string )
       parser = Mail::EnvelopeFromParser.new
       if @tree = parser.parse(string)
@@ -13,22 +13,22 @@ module Mail
         raise Mail::Field::ParseError, "EnvelopeFromElement can not parse |#{string}|\nReason was: #{parser.failure_reason}\n"
       end
     end
-    
+
     def tree
       @tree
     end
-    
+
     def date_time
       @date_time
     end
-    
+
     def address
       @address
     end
-    
+
     def to_s(*args)
       "#{@info}; #{@date_time.to_s(*args)}"
     end
-    
+
   end
 end

@@ -33,7 +33,7 @@ module Mail
       def major
         major_digits
       end
-      
+
       def minor
         minor_digits
       end

@@ -46,7 +46,7 @@ namespace :corpus do
     STDERR = $stderr
 
     puts "\n\n"
-        
+
     if @failed_emails.any?
       report_failures_to_stdout
     end
@@ -77,11 +77,11 @@ namespace :corpus do
       end
     end
   end
-  
+
   def file_node(path)
     verify(path)
   end
-  
+
   def verify(path)
     result, message = parse_as_mail(path)
     if result
@@ -101,7 +101,7 @@ namespace :corpus do
       new_email_name = [failure_as_filename, email_basename].join("_")
       File.open(File.join(@save_failures_to, new_email_name), 'w+') do |fh|
         fh << File.read(path)
-      end 
+      end
     end
   end
 
@@ -114,12 +114,12 @@ namespace :corpus do
       [false, e.message]
     end
   end
-  
+
   def report_failures_to_stdout
     @failed_emails.each do |failed|
       puts "#{failed[0]} : #{failed[1]}"
     end
     puts "Failed: #{@failed_emails.size}"
   end
-  
+
 end

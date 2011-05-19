@@ -16,5 +16,5 @@ describe Mail::DateTimeElement do
     date_text  = '""""""""""""""""'
     doing { Mail::DateTimeElement.new(date_text) }.should raise_error
   end
-  
+
 end

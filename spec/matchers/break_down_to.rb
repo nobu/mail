@@ -15,7 +15,7 @@
         end
 
         def failure_message
-          "expected #{@failed} to be |#{@expected[@failed]}| " + 
+          "expected #{@failed} to be |#{@expected[@failed]}| " +
           "but was |#{@target.send(@failed)}|"
         end
 
@@ -23,7 +23,7 @@
           "expected #{@failed} not to be |#{@expected[@failed]}| " +
           "and was |#{@target.send(@failed)}|"
         end
-  
+
       end
 
       # Actual matcher that is exposed.

@@ -2,9 +2,9 @@
 require 'spec_helper'
 
 describe Mail::CommentsField do
-  # 
+  #
   # comments        =       "Comments:" unstructured CRLF
-  
+
   it "should initialize" do
     doing { Mail::CommentsField.new("this is a comment") }.should_not raise_error
   end
@@ -20,6 +20,6 @@ describe Mail::CommentsField do
     t.name.should == 'Comments'
     t.value.should == 'this is a comment'
   end
-  
-  
+
+
 end

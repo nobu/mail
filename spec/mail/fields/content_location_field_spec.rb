@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Mail::ContentLocationField do
 
   # Content-Location Header Field
-  # 
+  #
   describe "initialization" do
 
     it "should initialize" do
@@ -35,12 +35,12 @@ describe Mail::ContentLocationField do
   end
 
   describe "parsing the value" do
-    
+
     it "should return an encoding string unquoted" do
       t = Mail::ContentLocationField.new('"A quoted filename.jpg"')
       t.location.should == 'A quoted filename.jpg'
     end
-    
+
   end
 
 end

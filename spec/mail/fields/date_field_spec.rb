@@ -4,9 +4,9 @@ require 'spec_helper'
 describe Mail::DateField do
   #    The origination date field consists of the field name "Date" followed
   #    by a date-time specification.
-  # 
+  #
   # orig-date       =       "Date:" date-time CRLF
-  # 
+  #
   #    The origination date specifies the date and time at which the creator
   #    of the message indicated that the message was complete and ready to
   #    enter the mail delivery system.  For instance, this might be the time
@@ -31,7 +31,7 @@ describe Mail::DateField do
     end
 
     it "should mix in the CommonAddress module" do
-      Mail::DateField.included_modules.should include(Mail::CommonDate) 
+      Mail::DateField.included_modules.should include(Mail::CommonDate)
     end
 
     it "should accept a string with the field name" do
@@ -47,17 +47,17 @@ describe Mail::DateField do
       t.value.should == 'Wed, 12 Aug 2009 00:00:02 +0000'
       t.date_time.should == ::DateTime.parse('12 Aug 2009 00:00:02 GMT')
     end
-    
+
     it "should accept nil as a value" do
       t = Mail::DateField.new(nil)
       t.date_time.should_not be_nil
     end
-    
+
     it "should allow us to encode an date field" do
       field = Mail::DateField.new('12 Aug 2009 00:00:02 GMT')
       field.encoded.should == "Date: Wed, 12 Aug 2009 00:00:02 +0000\r\n"
     end
-    
+
     it "should allow us to decode an address field" do
       field = Mail::DateField.new('12 Aug 2009 00:00:02 GMT')
       field.decoded.should == "Wed, 12 Aug 2009 00:00:02 +0000"
@@ -73,7 +73,7 @@ describe Mail::DateField do
       Time.stub!(:now).and_return(now)
       Mail::DateField.new.date_time.should == ::DateTime.parse(now.to_s)
     end
-    
+
   end
 
 end

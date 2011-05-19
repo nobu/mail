@@ -15,14 +15,14 @@ describe "SMTP Delivery Method" do
                                :enable_starttls_auto => true  }
     end
   end
-  
+
   after(:each) do
     files = Dir.glob(File.join(Mail.delivery_method.settings[:location], '*'))
     files.each do |file|
       File.delete(file)
     end
   end
-  
+
   describe "general usage" do
     tmpdir = File.expand_path('../../../../tmp/mail', __FILE__)
 
@@ -30,15 +30,15 @@ describe "SMTP Delivery Method" do
       Mail.defaults do
         delivery_method :file, :location => tmpdir
       end
-      
+
       mail = Mail.deliver do
         from    'roger@moore.com'
         to      'marcel@amont.com'
         subject 'invalid RFC2822'
       end
-      
+
       delivery = File.join(Mail.delivery_method.settings[:location], 'marcel@amont.com')
-      
+
       File.read(delivery).should == mail.encoded
     end
 
@@ -46,16 +46,16 @@ describe "SMTP Delivery Method" do
       Mail.defaults do
         delivery_method :file, :location => tmpdir
       end
-      
+
       mail = Mail.deliver do
         from    'roger@moore.com'
         to      'marcel@amont.com, bob@me.com'
         subject 'invalid RFC2822'
       end
-      
+
       delivery_one = File.join(Mail.delivery_method.settings[:location], 'marcel@amont.com')
       delivery_two = File.join(Mail.delivery_method.settings[:location], 'bob@me.com')
-      
+
       File.read(delivery_one).should == mail.encoded
       File.read(delivery_two).should == mail.encoded
     end
@@ -64,7 +64,7 @@ describe "SMTP Delivery Method" do
       Mail.defaults do
         delivery_method :file, :location => tmpdir
       end
-      
+
       mail = Mail.deliver do
         from    'roger@moore.com'
         to      '"Long, stupid email address" <mikel@test.lindsaar.net>'
@@ -75,5 +75,5 @@ describe "SMTP Delivery Method" do
     end
 
   end
-  
+
 end

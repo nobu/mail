@@ -13,7 +13,7 @@ describe Mail::ResentMessageIdField do
     t.value.should == '<1234@test.lindsaar.net>'
     t.message_id.should == '1234@test.lindsaar.net'
   end
-  
+
   it "should accept a string without the field name" do
     t = Mail::ResentMessageIdField.new('<1234@test.lindsaar.net>')
     t.name.should == 'Resent-Message-ID'

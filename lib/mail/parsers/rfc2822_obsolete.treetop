@@ -1,6 +1,6 @@
 module Mail
   grammar RFC2822Obsolete
-  
+
     rule obs_qp
       "\\" [\x00-\x7F]
     end
@@ -77,7 +77,7 @@ module Mail
     rule obs_angle_addr
       CFWS? "<" obs_route? addr_spec ">" CFWS?
     end
-    
+
     rule obs_route
       CFWS? obs_domain_list ":" CFWS?
     end
@@ -85,7 +85,7 @@ module Mail
     rule obs_domain_list
       "@" domain (("," )* CFWS? "@" domain)*
     end
-    
+
     rule obs_local_part
       word ("." word)*
     end
@@ -136,11 +136,11 @@ module Mail
     rule obs_from
       "From" WSP* ":" mailbox_list CRLF
     end
-  
+
     rule obs_sender
       "Sender" WSP* ":" mailbox CRLF
     end
-  
+
     rule obs_reply_to
       "Reply-To" WSP* ":" mailbox_list CRLF
     end

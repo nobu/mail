@@ -7,7 +7,7 @@ module Mail
     rule primary
       CFWS encoding CFWS ";"? CFWS
     end
-    
+
     rule encoding
       ietf_token "s"? {
         def text_value
@@ -15,6 +15,6 @@ module Mail
         end
       } / custom_x_token
     end
-    
+
   end
 end

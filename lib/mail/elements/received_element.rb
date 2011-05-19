@@ -1,9 +1,9 @@
 # encoding: utf-8
 module Mail
   class ReceivedElement
-    
+
     include Mail::Utilities
-    
+
     def initialize( string )
       parser = Mail::ReceivedParser.new
       if tree = parser.parse(string)
@@ -13,18 +13,18 @@ module Mail
         raise Mail::Field::ParseError, "ReceivedElement can not parse |#{string}|\nReason was: #{parser.failure_reason}\n"
       end
     end
-    
+
     def date_time
       @date_time
     end
-    
+
     def info
       @info
     end
-    
+
     def to_s(*args)
       "#{@info}; #{@date_time.to_s(*args)}"
     end
-    
+
   end
 end

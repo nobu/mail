@@ -6,6 +6,6 @@ module Mail
     rule primary
       name_val_list ";" date_time
     end
-    
+
   end
 end

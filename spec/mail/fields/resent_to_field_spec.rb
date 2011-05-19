@@ -1,10 +1,10 @@
 # encoding: utf-8
 require 'spec_helper'
-# 
+#
 # resent-to       =       "Resent-To:" address-list CRLF
 
 describe Mail::ResentToField do
-  
+
   describe "initialization" do
 
     it "should initialize" do
@@ -12,7 +12,7 @@ describe Mail::ResentToField do
     end
 
     it "should mix in the CommonAddress module" do
-      Mail::ResentToField.included_modules.should include(Mail::CommonAddress) 
+      Mail::ResentToField.included_modules.should include(Mail::CommonAddress)
     end
 
     it "should accept a string with the field name" do
@@ -28,7 +28,7 @@ describe Mail::ResentToField do
     end
 
   end
-  
+
   # Actual testing of CommonAddress methods oResentTours in the address field spec file
 
   describe "instance methods" do
@@ -49,18 +49,18 @@ describe Mail::ResentToField do
       t.addresses[1].should == 'mikel@me.com'
       t.addresses[2].should == 'bob@you.com'
     end
-    
+
     it "should return the formatted line on to_s" do
       t = Mail::ResentToField.new('sam@me.com, my_group: mikel@me.com, bob@you.com;')
       t.value.should == 'sam@me.com, my_group: mikel@me.com, bob@you.com;'
     end
-    
+
     it "should return the encoded line" do
       t = Mail::ResentToField.new('sam@me.com, my_group: mikel@me.com, bob@you.com;')
       t.encoded.should == "Resent-To: sam@me.com, \r\n\smy_group: mikel@me.com, \r\n\sbob@you.com;\r\n"
     end
-    
+
   end
-  
-  
+
+
 end

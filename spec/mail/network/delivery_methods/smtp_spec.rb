@@ -46,31 +46,31 @@ describe "SMTP Delivery Method" do
       MockSMTP.deliveries[0][1].should == mail.from[0]
       MockSMTP.deliveries[0][2].should == mail.destinations
     end
-    
+
     it "should be able to return actual SMTP protocol response" do
       Mail.defaults do
         delivery_method :smtp, :address => 'smtp.mockup.com', :port => 587, :return_response => true
       end
-      
+
       mail = Mail.deliver do
         from    'roger@moore.com'
         to      'marcel@amont.com'
         subject 'invalid RFC2822'
       end
-      
+
       response = mail.deliver!
       response.should eql 'OK'
-      
+
     end
   end
-    
+
   describe "enabling tls" do
-    
+
     def redefine_verify_none(new_value)
       OpenSSL::SSL.send(:remove_const, :VERIFY_NONE)
       OpenSSL::SSL.send(:const_set, :VERIFY_NONE, new_value)
     end
-    
+
     it "should use OpenSSL::SSL::VERIFY_NONE if a context" do
 
       # config can't be setup until redefined
@@ -87,7 +87,7 @@ describe "SMTP Delivery Method" do
 
       doing { mail.deliver! }.should_not raise_error(TypeError)
     end
-    
+
     it "should ignore OpenSSL::SSL::VERIFY_NONE if it is 0" do
 
       # config can't be setup until redefined
@@ -105,7 +105,7 @@ describe "SMTP Delivery Method" do
       doing { mail.deliver! }.should_not raise_error(TypeError)
     end
   end
-  
+
   describe "return path" do
 
     it "should use the return path if specified" do
@@ -114,7 +114,7 @@ describe "SMTP Delivery Method" do
         from "from@someemail.com"
         sender "sender@test.lindsaar.net"
         subject "Can't set the return-path"
-        return_path "bounce@someemail.com" 
+        return_path "bounce@someemail.com"
         message_id "<1234@someemail.com>"
         body "body"
       end
@@ -132,7 +132,7 @@ describe "SMTP Delivery Method" do
       end
       MockSMTP.deliveries[0][1].should == "sender@test.lindsaar.net"
     end
-    
+
     it "should use the from address is no return path or sender is specified" do
       mail = Mail.deliver do
         to "to@someemail.com"
@@ -143,7 +143,7 @@ describe "SMTP Delivery Method" do
       end
       MockSMTP.deliveries[0][1].should == "from@someemail.com"
     end
-    
+
   end
-  
+
 end
